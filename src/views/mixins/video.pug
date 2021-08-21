@@ -1,0 +1,8 @@
+mixin video(video)
+    div.mixin-video
+        a(href=`/videos/${video.id}`)
+            div.mixin-video__img
+            .mixin-video__about
+                div.mixin-video__about__title=video.title
+                div.mixin-video__about__description=video.description
+                div.mixin-video__about__createdAt=video.createdAt

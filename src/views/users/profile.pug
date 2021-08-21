@@ -1,0 +1,10 @@
+extends ../base
+include ../mixins/video
+
+block content 
+    h2 This is Your videos
+
+    each video in user.videos 
+        +video(video)
+    else 
+        p nothing found

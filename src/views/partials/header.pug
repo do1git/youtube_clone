@@ -1,0 +1,33 @@
+header 
+    nav 
+        div.header__logo
+            a(href="/")
+                i(class="fab fa-youtube")
+                span  YOUTUBE
+            
+        div.header__search
+            input.header__search__box(type="search",name=search,placeholder="Search Video")    
+            input.header__search__btn(type="submit",value="search")
+
+
+        
+        ul.header__menu 
+            if loggedIn       
+                li 
+                    a(href="/videos/upload") Upload video
+                li
+                    a(href="/users/logout") Log Out
+                li 
+                    a(href=`/users/${loggedInUser._id}`)
+                        if loggedInUser.avatarUrl === ""
+                            span 😘님
+                        else 
+                            img.header__menu__profile(src=loggedInUser.avatarUrl)
+                            span  님
+                li 
+                    a(href="/users/edit") Edit profile
+            else 
+                li 
+                    a(href="/join") Join  
+                li 
+                    a(href="/login") Login     

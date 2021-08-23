@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 
 import rootRouter from "./routers/rootRouter";
@@ -29,6 +30,12 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  res.header("Cross-Origin-Embedder-Policy", "credentialless");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  next();
+});
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
 app.use(

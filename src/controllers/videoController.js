@@ -34,6 +34,7 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   if (String(video.owner) !== String(req.session.user._id)) {
+    req.flash("error", "not the owner");
     return res.status(403).redirect("/");
   }
   res.render("edit", { pageTitle: `Editing -> ${video.title}`, video });
@@ -62,14 +63,15 @@ export const getUpload = (req, res) => {
 
 export const postUpload = async (req, res) => {
   const { _id } = req.session.user;
-  const { path: fileUrl } = req.file;
+  const { video, thumb } = req.files;
   const { title, description, hashtags } = req.body;
   try {
     const newVideo = await Video.create({
       title: title,
       description: description,
       hashtags: Video.formatHashtags(hashtags),
-      fileUrl: fileUrl,
+      fileUrl: video[0].path,
+      thumbUrl: thumb[0].path,
       owner: _id,
       /*createdAt: Date.now(),
       meta: {
@@ -97,6 +99,7 @@ export const deleteVideo = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
   if (String(video.owner) !== String(req.session.user._id)) {
+    req.flash("error", "not authorized");
     return res.status(403).redirect("/");
   }
   const user = await User.findById(req.session.user._id);

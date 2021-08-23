@@ -1,7 +1,7 @@
 mixin video(video)
     div.mixin-video
         a(href=`/videos/${video.id}`)
-            div.mixin-video__img
+            div.mixin-video__img(style=`background-image:url(${video.thumbUrl});background-size:cover;background-position:center`)
             .mixin-video__about
                 div.mixin-video__about__title=video.title
                 div.mixin-video__about__description=video.description

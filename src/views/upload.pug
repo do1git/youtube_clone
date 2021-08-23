@@ -10,6 +10,9 @@ block content
         div
             label(for="video") Video File 
             input(id="video", type="file" ,accept="video/*", name="video", required)
+        div
+            label(for="thumb") Thumbnail File 
+            input(id="thumb", type="file" ,accept="image/*", name="thumb", required)
         input(name="title", placeholder="Title", required, type="text",maxlength=80)
         input(name="description", placeholder="Description", required, type="text",minlength=20)
         input(name="hashtags", placeholder="Hashtags, seperated by comma.", required, type="text")

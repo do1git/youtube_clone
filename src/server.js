@@ -19,6 +19,7 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -31,8 +32,11 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  res.header("Cross-Origin-Embedder-Policy", "credentialless");
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
   res.header("Cross-Origin-Opener-Policy", "same-origin");
+  //res.header("Cross-Origin-Embedder-Policy", " credentialless");
+  //res.header("Cross-Origin-Opener-Policy", "same-origin");
+
   next();
 });
 app.use(flash());

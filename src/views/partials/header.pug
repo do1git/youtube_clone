@@ -22,7 +22,7 @@ header
                         if loggedInUser.avatarUrl === ""
                             span 😘님
                         else 
-                            img.header__menu__profile(src=loggedInUser.avatarUrl)
+                            img.header__menu__profile(src=loggedInUser.avatarUrl,crossorigin)
                             span  님
                 li 
                     a(href="/users/edit") Edit profile
